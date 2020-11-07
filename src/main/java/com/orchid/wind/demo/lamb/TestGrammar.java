@@ -18,10 +18,27 @@ public class TestGrammar {
             return false;
         };
 
+        Predicate<Object> malePeople2 = x -> {
+            if(x instanceof People) {
+                People xPeople = (People) x;
+                if("male1".equals(xPeople.getSex())) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
         People p = new People();
         p.setName("zly");
         p.setSex("male");
         System.out.println(malePeople.test(p));
+        System.out.println(malePeople.and(malePeople2));
+        System.out.println(malePeople.negate().test(p));
+
+        System.out.println(malePeople.and(malePeople2).test(p));
         System.out.println(malePeople.test(1));
+
+        System.out.println("Aa".hashCode());
+        System.out.println("BB".hashCode());
     }
 }
