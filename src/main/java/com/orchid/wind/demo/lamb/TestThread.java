@@ -6,15 +6,17 @@ public class TestThread {
 
     public static void main(String[] args) {
         Runnable runnable = () -> {
-          for(int i=0; i<5; i++) {
-              count ++;
-              try {
-                  Thread.sleep(1);
-              } catch (InterruptedException e) {
-                  e.printStackTrace();
-              }
+            synchronized (TestThread.class) {
+                for(int i=0; i<5; i++) {
+                    count ++;
+                    try {
+                        Thread.sleep(1);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
 
-          }
+                }
+            }
         };
 
         for(int i=0; i<100; i++) {
